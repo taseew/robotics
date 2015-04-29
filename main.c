@@ -13,8 +13,8 @@ void takeReverse(void);
 void goForward(void);
 void turnLeft(void);
 void turnRight(void);
-void longDelay(void);
-void shortDelay(void);
+void lngDelay(void);
+void srtDelay(void);
 
 
 int main(void){
@@ -28,9 +28,9 @@ int main(void){
     while(1){
         c = PIND;
         
-//        if (c == 0b11110000){   //All sensors within the table OR two back sensors outside the table; go fwd
-//            goForward();
-//        }
+        if (c == 0b11110000){   //All sensors within the table OR two back sensors outside the table; go fwd
+            goForward();
+        }
 //
 //        if (c == 0b11110011){   //All sensors within the table OR two back sensors outside the table; go fwd
 //            goForward();
@@ -39,7 +39,8 @@ int main(void){
         if (c == 0b11111100){   //Both front sensors out of the table; go back and then turn right
             takeReverse();
             turnRight();
-            shortDelay();
+            srtDelay();
+            srtDelay();
         }
 
 //
@@ -98,7 +99,7 @@ int main(void){
 
 void takeReverse(void){
     PORTB = 0b00000101;
-    longDelay();
+    lngDelay();
 }
 
 void goForward(void){
@@ -113,11 +114,11 @@ void turnRight(void){
     PORTB = 0b00001001;
 }
 
-void longDelay(void) {
-    _delay_ms(1000);
+void lngDelay(void) {
+    _delay_ms(500);
 }
 
-void shortDelay(void) {
+void srtDelay(void) {
     _delay_ms(200);
 }
 
